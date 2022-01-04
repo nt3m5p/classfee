@@ -6,7 +6,7 @@
     <title>user列表</title>
 </head>
 <body>
-<button id="queryGoods">查询user</button>
+<button id="queryGoods">查询</button>
 <table id="goods_table">
 </table>
 
@@ -22,7 +22,7 @@
             // data: {"status": 1},
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                if ("200" == result.code) {
+                if (result.code === "200") {
                     showData(result.data);
                 } else {
                     alert("未能获取user！");
