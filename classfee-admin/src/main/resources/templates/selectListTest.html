@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>user列表</title>
+</head>
+<body>
+<button id="queryGoods">查询user</button>
+<table id="goods_table">
+</table>
+
+<script src="js/jquery-3.6.0.js" type="text/javascript"></script>
+<script>
+    // 绑定按钮点击事件
+    $("#queryGoods").click(function () {
+        $.ajax({
+            type: 'get',
+            // 如果使用这种url写法，则不需要再写在data中
+            // url: '/test/getGoodsInfoByStatus?status=' + 1,
+            url: '/selectList',
+            // data: {"status": 1},
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                if ("200" == result.code) {
+                    showData(result.data);
+                } else {
+                    alert("未能获取user！");
+                }
+            }, error: function (e) {//响应不成功时返回的函数
+                console.log(e, 'error');
+            }
+        });
+    });
+
+    // 将数据渲染在表格中的方法
+    function showData(data) {
+        var table = $("#goods_table");
+        table.empty();
+        //拼接表头
+        table.append("<tr></tr><td>id</td><td>name</td></tr>");
+        for (var i = 0; i < data.length; i++) {
+            //拼接表格的行和列
+            var str = "<tr><td>" + data[i].id + "</td><td>" + data[i].name + "</td></tr>";
+            //追加到table中
+            table.append(str);
+        }
+    }
+</script>
+</body>
+</html>
