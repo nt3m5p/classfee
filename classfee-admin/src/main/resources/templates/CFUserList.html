@@ -6,26 +6,24 @@
     <title>user列表</title>
 </head>
 <body>
-<button id="queryGoods">查询</button>
-<table id="goods_table">
+<button id="queryCFUsers">查询</button>
+<table id="CFUser_table">
 </table>
 
-<script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
 <script>
     // 绑定按钮点击事件
-    $("#queryGoods").click(function () {
+    $("#queryCFUsers").click(function () {
         $.ajax({
             type: 'get',
-            // 如果使用这种url写法，则不需要再写在data中
-            // url: '/test/getGoodsInfoByStatus?status=' + 1,
-            url: '/selectList',
+            url: '/listAll',
             // data: {"status": 1},
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                if (result.code == "200") {
+                if (result.code && "200" == result.code) {
                     showData(result.data);
                 } else {
-                    alert("未能获取user！");
+                    alert("未能获取CFUser！");
                 }
             }, error: function (e) {//响应不成功时返回的函数
                 console.log(e, 'error');
@@ -35,13 +33,13 @@
 
     // 将数据渲染在表格中的方法
     function showData(data) {
-        var table = $("#goods_table");
+        var table = $("#CFUser_table");
         table.empty();
         //拼接表头
-        table.append("<tr></tr><td>id</td><td>name</td></tr>");
+        table.append("<tr></tr><td>id</td><td>username</td><td>password</td></tr>");
         for (var i = 0; i < data.length; i++) {
             //拼接表格的行和列
-            var str = "<tr><td>" + data[i].id + "</td><td>" + data[i].name + "</td></tr>";
+            var str = "<tr><td>" + data[i].id + "</td><td>" + data[i].username + "</td><td>" + data[i].password + "</td></tr>";
             //追加到table中
             table.append(str);
         }

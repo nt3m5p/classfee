@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhangle.classfeeadmin.mapper.UserMapper">
+<mapper namespace="com.zhangle.classfeeadmin.mapper.CFUserMapper">
 
-    <select id="selectList" resultType="com.zhangle.classfeeadmin.model.User">
+    <select id="listAll" resultType="com.zhangle.classfeeadmin.model.CFUser">
         select *
-        from user
+        from CFUser
     </select>
 
 </mapper>

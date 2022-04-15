@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class TestWebController {
+public class WebController {
 
-
-    @GetMapping("/selectListTest")
-    public String usertest() {
-        return "selectListTest";
+    @GetMapping("/CFUserList")
+    public String listALl() {
+        return "CFUserList";
     }
 }
